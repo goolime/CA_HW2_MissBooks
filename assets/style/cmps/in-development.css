@@ -1,0 +1,23 @@
+.in-development {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2em;
+}
+
+.in-development img {
+    max-width: 40%;
+    margin-bottom: 1em;
+}
+
+.in-development h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.in-development p {
+    font-size: 1em;
+    color: var(--gray2);
+}
