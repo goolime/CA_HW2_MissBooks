@@ -14,7 +14,8 @@ export function InDevelopmet() {
     
     return (
         <section className="in-development">
-            <img src="../assets/img/under-development.png" alt="Under Development" />
+            <img src={"./assets/img/under-development.png"} alt="Under Development" />
+
             <h2>this page is under development and will be up soon</h2>
             <p>Redirecting to home in {countdown} seconds...</p>
         </section>
