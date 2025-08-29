@@ -3,6 +3,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url(./cmps/err404.css);
 @import url(./cmps/in-development.css);
+@import url(./cmps/BookApp/bookApp.css);
 
 /* Vars */
 :root {

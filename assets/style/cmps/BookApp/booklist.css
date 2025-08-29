@@ -1,0 +1,76 @@
+.book-list{
+    display: contents;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-left: 0.2rem;
+    height: 100%;
+    list-style-type: none;
+    list-style-position: inside;
+    padding: 0.5rem;
+}   
+
+.book-list .book-preview {
+    border-radius: 8px;
+    margin-bottom: 0.2rem;
+    padding: 0.5rem;
+    background-color: var(--clr1bg-light);
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    list-style-type: none;
+    justify-content: space-between;
+}
+
+
+
+.book-list .book-preview .book-title-authors {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.book-list .book-preview .book-title-authors h3{
+    margin: 0;
+    font-size: 2rem;
+    color: var(--gray3);
+    font-weight: 600;
+}
+
+.book-list .book-preview .book-title-authors h4{
+    margin: 0;
+    justify-self: end;
+    align-self:flex-end;
+    font-size: 1rem;
+    margin-left: 2rem;
+    color: var(--clr1);
+}
+
+.book-list .book-preview img{
+    height: 60px;
+    margin-right: 1rem;
+}
+
+.book-list .book-preview h4{
+    margin: 0;
+    font-size: 1rem;
+    color: var(--gray3);
+    font-weight: 400;
+}
+
+.book-list .book-preview .book-entry {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.book-list .book-preview .book-actions button {
+    background-color: var(--clr1);
+    color: var(--gray1);
+}
+
+.book-list .book-preview .book-actions button:hover {
+    background-color: var(--gray1);
+    color: var(--clr1);
+}

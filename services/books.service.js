@@ -2,7 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const BOOK_KEY = 'bookDB'
-_createBooks()
+_defaultBooks()
 
 export const bookService = {
     query,
@@ -11,6 +11,7 @@ export const bookService = {
     save,
     getEmptyBook,
     getDefaultFilter,
+    getCategories
 }
 
 // For Debug (easy access from console):
@@ -29,10 +30,14 @@ function query(filterBy = {}) {
                 if(filterBy.isOnSale && !book.listPrice.isOnSale) return false
                 if(filterBy.minPrice && book.listPrice.amount < filterBy.minPrice) return false
                 if(filterBy.maxPrice && book.listPrice.amount > filterBy.maxPrice) return false
+                if(filterBy.categories && filterBy.categories.length && !filterBy.categories.every(ctg => book.categories.includes(ctg))) return false
                 
                 return true
             })
-        })
+        }).catch(err => {
+            console.error('Error querying books:', err);
+            return undefined
+        });
 }
 
 function get(bookId) {
@@ -56,116 +61,51 @@ function getEmptyBook(title = '', authors=[''], publishedDate=0, description='',
 }
 
 function getDefaultFilter(filterBy = { title: '', authors: '', publishedDate: 0, minPageCount: 0, maxPageCount: Infinity, language: '', isOnSale: false, minPrice: 0, maxPrice: Infinity }) {
+    const books = utilService.loadFromStorage(BOOK_KEY)
+    if (books && books.length) {
+        filterBy.minPageCount = Math.min(...books.map(book => book.pageCount))
+        filterBy.maxPageCount = Math.max(...books.map(book => book.pageCount))
+        filterBy.minPrice = Math.min(...books.map(book => book.listPrice.amount))
+        filterBy.maxPrice = Math.max(...books.map(book => book.listPrice.amount))
+    }
     return { title: filterBy.title, authors: filterBy.authors, publishedDate: filterBy.publishedDate, minPageCount: filterBy.minPageCount, maxPageCount: filterBy.maxPageCount, language: filterBy.language, isOnSale: filterBy.isOnSale, minPrice: filterBy.minPrice, maxPrice: filterBy.maxPrice }
 }
 
-function _createBooks() {
-    for (const book of defaultbooks) {
-        storageService.post(BOOK_KEY, book)
-    }
+function _defaultBooks() {
+    let books = utilService.loadFromStorage(BOOK_KEY)
+    if (books && books.length) return
+    utilService.saveToStorage(BOOK_KEY, _createBooks())
 }
 
-const defaultbooks = [
-    {
-        "id": "OXeMG8wNskc",
-        "title": "metus hendrerit",
-        "subtitle": "mi est eros dapibus himenaeos",
-        "authors": [ "Barbara Cartland" ],
-        "publishedDate": 1999,
-        "description": "placerat nisi sodales suscipit tellus",
-        "pageCount": 713,
-        "categories": [ "Computers", "Hack" ],
-        "thumbnail": "http://ca.org/books-photos/20.jpg",
-        "language": "en",
-        "listPrice": {
-            "amount": 109,
-            "currencyCode": "EUR",
-            "isOnSale": false
+function _createBooks() {
+    const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+    const books = []
+    for (let i = 0; i < 20; i++) {
+        const book = {
+            id: utilService.makeId(),
+            title: utilService.makeLorem(2),
+            subtitle: utilService.makeLorem(4),
+            authors: [
+                utilService.makeLorem(1)
+            ],
+            publishedDate: utilService.getRandomIntInclusive(1950, 2025),
+            description: utilService.makeLorem(20),
+            pageCount: utilService.getRandomIntInclusive(20, 600),
+            categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+            thumbnail: `http://www.coding-academy.org/books-photos/${i+1}.jpg`,
+            language: "en",
+            listPrice: {
+                amount: utilService.getRandomIntInclusive(80, 500),
+                currencyCode: "EUR",
+                isOnSale: Math.random() > 0.7
+            }
         }
-    },
-    {
-        "id": "JYOJa2NpSCq",
-        "title": "morbi",
-        "subtitle": "lorem euismod dictumst inceptos mi",
-        "authors": [ "Barbara Cartland" ],
-        "publishedDate": 1978,
-        "description": "aliquam pretium lorem laoreet etiam odio cubilia iaculis placerat",
-        "pageCount": 129,
-        "categories": [ "Computers", "Hack" ],
-        "thumbnail": "http://ca.org/books-photos/14.jpg",
-        "language": "sp",
-        "listPrice": {
-            "amount": 44,
-            "currencyCode": "EUR",
-            "isOnSale": true
-        }
-    },
-    {
-        "id": "1y0Oqts35DQ",
-        "title": "at viverra venenatis",
-        "subtitle": "gravida libero facilisis rhoncus",
-        "authors": [ "Dr. Seuss" ],
-        "publishedDate": 1999,
-        "description": "lorem ipsum dolor sit amet consectetur adipiscing elit",
-        "pageCount": 972,
-        "categories": [ "Computers", "Hack" ],
-        "thumbnail": "http://ca.org/books-photos/2.jpg",
-        "language": "he",
-        "listPrice": {
-            "amount": 185,
-            "currencyCode": "EUR",
-            "isOnSale": false
-        }
-    },
-    {
-        "id": "kGh6z6gqX4c",
-        "title": "dictum",
-        "subtitle": "augue eu consectetur class curabitur conubia",
-        "authors": [ "Dr. Seuss" ],
-        "publishedDate": 2011,
-        "description": "aliquam pretium lorem laoreet etiam odio cubilia iaculis placerat",
-        "pageCount": 972,
-        "categories": [ "Computers", "Hack" ],
-        "thumbnail": "http://ca.org/books-photos/12.jpg",
-        "language": "he",
-        "listPrice": {
-            "amount": 185,
-            "currencyCode": "EUR",
-            "isOnSale": false
-        }
-    },
-    {
-        "id": "8J0I1d8mqc",
-        "title": "augue eu",
-        "subtitle": "class curabitur conubia",
-        "authors": [ "Dr. Seuss" ],
-        "publishedDate": 2011,
-        "description": "aliquam pretium lorem laoreet etiam odio cubilia iaculis placerat",
-        "pageCount": 972,
-        "categories": [ "Computers", "Hack" ],
-        "thumbnail": "http://ca.org/books-photos/12.jpg",
-        "language": "he",
-        "listPrice": {
-            "amount": 185,
-            "currencyCode": "EUR",
-            "isOnSale": false
-        }
-    },
-    {
-        "id": "Q8Q9Lsd03BD",
-        "title": "lorem ipsum",
-        "subtitle": "dolor sit amet",
-        "authors": [ "Jane Doe" ],
-        "publishedDate": 2020,
-        "description": "a classic book on lorem ipsum",
-        "pageCount": 300,
-        "categories": [ "Fiction", "Classics" ],
-        "thumbnail": "http://ca.org/books-photos/15.jpg",
-        "language": "en",
-        "listPrice": {
-            "amount": 50,
-            "currencyCode": "EUR",
-            "isOnSale": true
-        }
+        books.push(book)
     }
-]
+    //console.log('books', books)
+    return books
+}
+
+function getCategories() {
+    return ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion'];
+}
