@@ -56,16 +56,18 @@ export function BookFilter({ filterBy, onFilterChange }) {
         <form onSubmit={onSubmitFilter}>
             <Colapsable title={<h3>Title/Author</h3>} children={
                 [
-                    <label key="title" htmlFor="title">Title</label>,
+                    <div className="item">
+                    <label key="title" htmlFor="title">Title</label>
                     <input key="titleInput"
                         id="title"
                         type="text"
                         name="title"
                     placeholder="Search by title"
                     value={filterByToEdit.title}
-                    
-                    onChange={handleChange} />,
-                    <label key="author" htmlFor="author">Author</label>,
+                    onChange={handleChange} />
+                    </div>,
+                    <div className="item">
+                    <label key="author" htmlFor="author">Author</label>
                     <input key="authorInput"
                         id="authors"
                         type="text"
@@ -73,6 +75,7 @@ export function BookFilter({ filterBy, onFilterChange }) {
                         placeholder="Search by author"
                         value={filterByToEdit.author}
                         onChange={handleChange} />
+                    </div>
                 ]} />
             <Colapsable title={<h3>Categories</h3>} children={
                 <div>
@@ -95,54 +98,64 @@ export function BookFilter({ filterBy, onFilterChange }) {
             } />
             <Colapsable title={<h3>Price</h3>} children={
                 [
-                    <label key="minPrice" htmlFor="minPrice">Min Price</label>,
-                    <input key="minPriceInput"
-                        id="minPrice"
-                        type="number"
-                        name="minPrice"
-                        placeholder="Min price"
-                        value={filterByToEdit.minPrice}
-                        onChange={handleChange}
-                    />,
-                    <label key="maxPrice" htmlFor="maxPrice">Max Price</label>,
-                    <input key="maxPriceInput"
-                        id="maxPrice"
-                        type="number"
-                        name="maxPrice"
-                        placeholder="Max price"
-                        value={filterByToEdit.maxPrice}
-                        onChange={handleChange}
-                    />,
-                    <label key="isOnSale" htmlFor="isOnSale">On Sale</label>,
-                    <input key="isOnSaleInput"
-                        id="isOnSale"
-                        type="checkbox"
-                        name="isOnSale"
-                        checked={filterByToEdit.isOnSale}
-                        onChange={handleChange}
-                    />
+                    <div className="item">
+                        <label key="minPrice" htmlFor="minPrice">Min Price</label>
+                        <input key="minPriceInput"
+                            id="minPrice"
+                            type="number"
+                            name="minPrice"
+                            placeholder="Min price"
+                            value={filterByToEdit.minPrice}
+                            onChange={handleChange}
+                        />
+                    </div>,
+                    <div className="item">
+                        <label key="maxPrice" htmlFor="maxPrice">Max Price</label>
+                        <input key="maxPriceInput"
+                            id="maxPrice"
+                            type="number"
+                            name="maxPrice"
+                            placeholder="Max price"
+                            value={filterByToEdit.maxPrice}
+                            onChange={handleChange}
+                        />
+                    </div>,
+                    <div className="item">
+                        <label key="isOnSale" htmlFor="isOnSale">On Sale</label>
+                        <input key="isOnSaleInput"
+                            id="isOnSale"
+                            type="checkbox"
+                            name="isOnSale"
+                            checked={filterByToEdit.isOnSale}
+                            onChange={handleChange}
+                        />
+                    </div>
                 ]
             } />
             <Colapsable title={<h3>Page Count</h3>} children={
                 [
-                    <label key="minPageCount" htmlFor="minPageCount">Min Page Count</label>,
-                    <input key="minPageCountInput"
-                        id="minPageCount"
-                        type="number"
-                        name="minPageCount"
-                        placeholder="Min page count"
-                        value={filterByToEdit.minPageCount}
-                        onChange={handleChange}
-                    />,
-                    <label key="maxPageCount" htmlFor="maxPageCount">Max Page Count</label>,
-                    <input key="maxPageCountInput"
-                        id="maxPageCount"
-                        type="number"
-                        name="maxPageCount"
-                        placeholder="Max page count"
+                    <div className="item">
+                        <label key="minPageCount" htmlFor="minPageCount">Min Page Count</label>
+                        <input key="minPageCountInput"
+                            id="minPageCount"
+                            type="number"
+                            name="minPageCount"
+                            placeholder="Min page count"
+                            value={filterByToEdit.minPageCount}
+                            onChange={handleChange}
+                        />
+                    </div>,
+                    <div className="item">
+                        <label key="maxPageCount" htmlFor="maxPageCount">Max Page Count</label>
+                        <input key="maxPageCountInput"
+                            id="maxPageCount"
+                            type="number"
+                            name="maxPageCount"
+                            placeholder="Max page count"
                         value={filterByToEdit.maxPageCount}
                         onChange={handleChange}
-                    />
+                        />
+                    </div>
                 ]
             } />
             <button>Filter</button>

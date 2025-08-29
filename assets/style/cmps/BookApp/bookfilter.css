@@ -5,10 +5,12 @@
     border-radius: 8px;
  }
  .book-filter form .colapsable {
+    border-radius: 8px;
     background-color: var(--clr2bg-light);
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
+    padding: 0.5rem;
     gap: 0.5rem;
  }
 .book-filter form .colapsable .content {
@@ -30,4 +32,11 @@
 
 .book-filter form label {
     font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+.book-filter form .item {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 0.4rem;
+    font-size: 0.9rem;
 }
