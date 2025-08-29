@@ -51,11 +51,11 @@ function save(book) {
     }
 }
 
-function getEmptyBook(title = '', price = 0) {
-    return { title, price }
+function getEmptyBook(title = '', authors=[''], publishedDate=0, description='', pageCount=0, categories=[''], thumbnail='', language='', listPrice={ amount: 0, currencyCode: 'USD', isOnSale: false }) {
+    return { title, authors, publishedDate, description, pageCount, categories, thumbnail, language, listPrice }
 }
 
-function getDefaultFilter(filterBy = { title: '', authors: '', publishedDate: '', minPageCount: 0, maxPageCount: Infinity, language: '', isOnSale: false, minPrice: 0, maxPrice: Infinity }) {
+function getDefaultFilter(filterBy = { title: '', authors: '', publishedDate: 0, minPageCount: 0, maxPageCount: Infinity, language: '', isOnSale: false, minPrice: 0, maxPrice: Infinity }) {
     return { title: filterBy.title, authors: filterBy.authors, publishedDate: filterBy.publishedDate, minPageCount: filterBy.minPageCount, maxPageCount: filterBy.maxPageCount, language: filterBy.language, isOnSale: filterBy.isOnSale, minPrice: filterBy.minPrice, maxPrice: filterBy.maxPrice }
 }
 
