@@ -4,7 +4,7 @@ import { Home } from "./pages/Home.jsx"
 import { Err404} from "./pages/Err404.jsx"
 import { AboutUs } from "./pages/About.jsx"
 import { BookApp } from "./pages/BookApp.jsx"
-//import { BookDetails } from "./pages/BookDetails.jsx"
+import { BookDetails } from "./pages/BookDetails.jsx"
 import { InDevelopmet } from "./pages/InDevelopmet.jsx"
 
 
@@ -20,7 +20,7 @@ export function RootCmp() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/book" element={<BookApp />} />
-                        <Route path="/book/:bookId" element={<InDevelopmet />} />
+                        <Route path="/book/:bookId" element={<BookDetails />} />
                         <Route path="/about" element={<AboutUs />} />
                         <Route path="/*" element={<Err404 />} />
                     </Routes>

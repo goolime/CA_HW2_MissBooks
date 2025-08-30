@@ -1,7 +1,7 @@
 const {Navigate} = ReactRouterDOM
 const {useEffect, useState} = React
 
-export function InDevelopmet() {
+export function InDevelopment() {
     const [countdown, setCountdown] = useState(5)
 
     useEffect(() => {

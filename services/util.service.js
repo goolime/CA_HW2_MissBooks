@@ -6,7 +6,8 @@ export const utilService = {
     getRandomIntInclusive,
     getDayName,
     getMonthName,
-    animateCSS
+    animateCSS,
+    getCurrencySign
 }
 
 function makeId(length = 6) {
@@ -71,4 +72,18 @@ function animateCSS(el, animation='bounce') {
 
         el.addEventListener('animationend', handleAnimationEnd, { once: true })
     })
+}
+
+function getCurrencySign(currencyCode) {
+    const currencySigns = {
+        USD: '$',
+        EUR: '€',
+        ILS: '₪',
+        GBP: '£',
+        AUD: 'A$',
+        CAD: 'C$',
+        NZD: 'NZ$',
+        YEN: '¥'
+    }
+    return currencySigns[currencyCode] || currencyCode;
 }

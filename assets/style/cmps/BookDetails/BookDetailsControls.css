@@ -1,0 +1,45 @@
+.book-details-controls {
+    display: flex;
+    margin-bottom: 1em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-details-controls img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-left: 1rem;
+    color: var(--clr1bg-light);
+    filter: invert(95%) sepia(18%) saturate(211%) hue-rotate(46deg) brightness(90%) contrast(91%);
+    transition: 0.5s;
+}
+
+.book-details-controls img:hover {
+    width: 30px;
+    height: 30px;
+    filter: invert(14%) sepia(0%) saturate(1325%) hue-rotate(204deg) brightness(97%) contrast(91%);
+}
+
+.book-details-controls .edit-toggle {
+    display: flex;
+    align-items: center;
+    margin-right: 0.3rem;
+}
+
+.book-details-controls input:checked + .slider {
+  background-color:  var(--clr1bg-light);
+}
+
+.book-details-controls .slider {
+    transform: scale(0.7);
+}
+
+.book-details-controls .edit-toggle h3 {
+    color: var(--clr1bg-light);
+    transition: .4s;
+}
+
+.book-details-controls .edit-toggle h3.enabled {
+    color: var(--gray3);
+}

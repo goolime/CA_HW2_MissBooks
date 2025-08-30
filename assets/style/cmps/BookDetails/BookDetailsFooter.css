@@ -1,0 +1,25 @@
+
+.book-details-footer {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 1rem;
+
+}
+
+.book-details-footer img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-left: 1rem;
+    color: var(--clr1bg-light);
+    filter: invert(95%) sepia(18%) saturate(211%) hue-rotate(46deg) brightness(90%) contrast(91%);
+    transition: 0.5s;
+}
+
+.book-details-footer img:hover {
+    width: 30px;
+    height: 30px;
+    filter: invert(14%) sepia(0%) saturate(1325%) hue-rotate(204deg) brightness(97%) contrast(91%);
+}
