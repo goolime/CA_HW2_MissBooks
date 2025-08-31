@@ -30,9 +30,9 @@ export function BookFilter({ filterBy, onFilterChange }) {
                 const idx = categories.indexOf(id)
                 if (idx !== -1) categories.splice(idx, 1)
             }
-            setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: categories }));
+            value = categories
         }
-        else setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
     function onSubmitFilter(ev) {

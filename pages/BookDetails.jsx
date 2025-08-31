@@ -38,7 +38,7 @@ export function BookDetails() {
         <section >
              <BookDetailsControls editMode={editMode} onChangeEditMode={handleEditModeChange} />
             <section className="book-details-page">
-            { editMode ? <InDevelopment /> :  <BookDetailsModule book={book} /> }
+            { editMode ? <BookEditModule book={book} onChangeEditMode={handleEditModeChange} /> :  <BookDetailsModule book={book} /> }
             </section>
             <BookDetailsFooter booknext={book.next} bookprev={book.prev} />
         </section>

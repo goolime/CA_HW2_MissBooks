@@ -41,7 +41,14 @@ function query(filterBy = {}) {
 }
 
 function get(bookId) {
-    return storageService.get(BOOK_KEY, bookId)
+    return storageService.query(BOOK_KEY).then(books => {
+        const idx = books.findIndex(book => book.id === bookId)
+        if (idx === -1) return Promise.reject('Book not found')
+        const ansBook = { ...books[idx] }
+        ansBook.next = books[idx + 1] ? books[idx + 1].id : books[0].id
+        ansBook.prev = books[idx - 1] ? books[idx - 1].id : books[books.length - 1].id
+        return Promise.resolve(ansBook)
+    })
 }
 
 function remove(bookId) {

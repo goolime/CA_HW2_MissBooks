@@ -1,0 +1,97 @@
+.book-edit {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 2fr 1fr 2fr 50px;
+    grid-template-areas: "book-img book-info"
+                         "book-img book-price"
+                         "book-description book-description"
+                         "edit-action edit-action";
+    align-items: center;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.book-edit .book-img {
+    grid-area: book-img;
+    position: relative;
+}
+
+.book-edit .book-img img {
+    
+    width: 97%;
+    object-fit: cover;
+    align-self: center;
+    justify-self: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.book-edit .book-info {
+    grid-area: book-info;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 8px;
+    background-color: var(--clr1bg-light);
+}
+
+.book-edit .book-info h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--gray3);
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.book-edit .book-info h2 img{
+    width: 30px;
+}
+
+.book-edit .book-info h4 img{
+    width: 15px;
+}
+
+.book-edit .book-info h3 img{
+    width: 18px;
+}
+
+.book-edit .book-price {
+    grid-area: book-price;
+    padding: 1rem;
+    background-color: var(--clr1bg-light);
+    margin: 0.5rem;
+    border-radius: 8px;
+}
+
+.book-edit .book-description {
+    grid-area: book-description;
+    padding: 1rem;
+    background-color: var(--clr1bg-light);
+    border-radius: 8px;
+
+}
+
+.book-edit .book-description .book-categories {
+    display: flex;
+    flex-direction: row;
+    justify-content:  start;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.book-edit .book-description .book-categories .book-category {
+    background-color: var(--gray3);
+    color: var(--gray1);
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.book-edit .edit-actions{
+    grid-area: edit-action;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
