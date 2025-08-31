@@ -7,7 +7,8 @@ export const utilService = {
     getDayName,
     getMonthName,
     animateCSS,
-    getCurrencySign
+    getCurrencySign,
+    getCurrencys
 }
 
 function makeId(length = 6) {
@@ -86,4 +87,34 @@ function getCurrencySign(currencyCode) {
         YEN: '¥'
     }
     return currencySigns[currencyCode] || currencyCode;
+}
+
+function getCurrencys(){
+    return [
+        {
+            currencyCode: 'USD' ,
+            currencySign: '$'
+        },
+        {
+            currencyCode: 'EUR' ,
+            currencySign: '€'},
+        {
+            currencyCode: 'ILS' ,
+            currencySign: '₪'},
+        {
+            currencyCode: 'GBP' ,
+            currencySign: '£'},
+        {
+            currencyCode: 'AUD' ,
+            currencySign: 'A$'},
+        {
+            currencyCode: 'CAD' ,
+            currencySign: 'C$'},
+        {
+            currencyCode: 'NZD' ,
+            currencySign: 'NZ$'},
+        {
+            currencyCode: 'YEN' ,
+            currencySign: '¥'}
+    ]
 }

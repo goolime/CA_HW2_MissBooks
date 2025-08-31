@@ -18,7 +18,7 @@ export function BookDetailsModule({ book }) {
                 <h3>Author: {book.author}</h3>
                 {pages}
                 <h4>Published: {book.publishedDate}</h4>
-                <h4>Language: {book.language}</h4>
+                <h4>Language: {book.language.toUpperCase()}</h4>
             </section>
             <section className="book-price">
                 {price}

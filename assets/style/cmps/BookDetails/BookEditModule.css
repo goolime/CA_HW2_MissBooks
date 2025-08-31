@@ -55,13 +55,26 @@
     width: 18px;
 }
 
+.book-edit .book-price h3 img{
+    width: 18px;
+}
+
 .book-edit .book-price {
     grid-area: book-price;
     padding: 1rem;
     background-color: var(--clr1bg-light);
     margin: 0.5rem;
     border-radius: 8px;
+    
 }
+
+.book-edit .book-price form {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-content: center;
+}
+
 
 .book-edit .book-description {
     grid-area: book-description;
@@ -94,4 +107,21 @@
     flex-direction: row;
     align-content: center;
     justify-content: center;
+}
+
+
+
+.book-edit input:checked + .slider {
+  background-color:  var(--gray3);
+}
+
+.book-edit .slider {
+    transform: scale(0.5);
+}
+
+.book-edit .on-sale{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-content: center;
 }
