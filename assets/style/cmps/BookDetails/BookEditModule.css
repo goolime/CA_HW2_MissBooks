@@ -1,7 +1,7 @@
 .book-edit {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: 2fr 1fr 2fr 50px;
+    grid-template-columns: 1.5fr 4fr;
+    grid-template-rows: 2fr 0.7fr 1.5fr 50px;
     grid-template-areas: "book-img book-info"
                          "book-img book-price"
                          "book-description book-description"
@@ -55,6 +55,27 @@
     width: 18px;
 }
 
+.book-edit .book-info .edit-authors .authors {
+    display: flex;
+    flex-direction: row;
+    align-content: start;
+}
+
+.book-edit .book-info .edit-authors .author {
+    display: flex;
+    background-color: var(--gray3);
+    border-radius: 8px;
+    margin: 0.3rem;
+    padding-right: 1rem;
+    flex-direction: row;
+    align-content: start;
+    color: var(--gray1);
+}
+
+.book-edit .book-info .edit-authors .action{
+    margin-left: 1.5rem;
+}
+
 .book-edit .book-price h3 img{
     width: 18px;
 }
@@ -81,7 +102,27 @@
     padding: 1rem;
     background-color: var(--clr1bg-light);
     border-radius: 8px;
+}
 
+.book-edit .book-description p img{
+    width: 20px;
+}
+
+.book-edit .book-description form{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.book-edit .book-description form .actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.book-edit .book-description form textarea{
+    resize: none;
 }
 
 .book-edit .book-description .book-categories {
@@ -124,4 +165,51 @@
     flex-direction: row;
     justify-content: start;
     align-content: center;
+}
+
+.book-edit .book-description .book-categories img{
+    width: 30px;
+}
+
+.book-edit .book-description .book-categories-edit form{
+    display: flex;
+    flex-direction: column;
+}
+
+.book-edit .book-description .book-categories-edit form .categories{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.book-edit dialog {
+    border: 8px solid red;
+    border-radius: 8px;
+    background: var(--gray1);
+    backdrop-Filter: blur(8px);
+    z-index: 999999999;
+}
+
+
+
+.book-edit dialog.positive{
+    border: 8px solid var(--clr1bg);
+}
+
+.book-edit dialog .dialog-message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.book-edit .backdrop {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999998;
+
 }

@@ -6,6 +6,7 @@
 @import url(./cmps/in-development.css);
 @import url(./cmps/BookApp/bookApp.css);
 @import url(./cmps/BookDetails/bookDetails.css);
+@import url(./LongTxt.css);
 
 /* Vars */
 :root {

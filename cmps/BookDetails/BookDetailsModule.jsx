@@ -15,7 +15,7 @@ export function BookDetailsModule({ book }) {
             <section className="book-info">
                 <h2>{book.title}</h2>
                 <h4>{book.subtitle}</h4>
-                <h3>Author: {book.author}</h3>
+                <h3>{ book.authors>1 ? 'Authors: ' : 'Author: ' }{book.authors.join(", ")}</h3>
                 {pages}
                 <h4>Published: {book.publishedDate}</h4>
                 <h4>Language: {book.language.toUpperCase()}</h4>
