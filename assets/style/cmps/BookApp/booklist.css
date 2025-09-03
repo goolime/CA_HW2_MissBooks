@@ -65,8 +65,14 @@
     align-items: center;
 }
 
+.book-list .book-preview .book-actions{
+    display: flex;
+    align-content: center;
+}
+
 .book-list .book-preview .book-actions button {
     background-color: var(--clr1);
+    min-height: 3rem;
     color: var(--gray1);
 }
 
@@ -74,3 +80,17 @@
     background-color: var(--gray1);
     color: var(--clr1);
 }
+
+.book-list .book-preview .book-actions button .delete-img{
+    align-self: center;
+    justify-self: center;
+    filter: invert(99%) sepia(3%) saturate(140%) hue-rotate(65deg) brightness(114%) contrast(88%);
+    width: 1rem;
+    height: 1rem;
+
+}
+
+.book-list .book-preview .book-actions button:hover .delete-img{
+    filter: invert(41%) sepia(8%) saturate(751%) hue-rotate(57deg) brightness(94%) contrast(85%);
+}
+

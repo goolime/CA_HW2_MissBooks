@@ -1,7 +1,9 @@
 import { bookService } from "../../services/books.service.js"
+import { utilService } from "../../services/util.service.js"
+import { Actions } from "../actions.jsx"
 import { Colapsable } from "../Colapsable.jsx"
 
-const { useState, useEffect } = React
+const { useState } = React
 
 export function BookFilter({ filterBy, onFilterChange }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
@@ -52,115 +54,120 @@ export function BookFilter({ filterBy, onFilterChange }) {
     }
 
     return <div className="book-filter">
-        <Colapsable title={<h2>Filter Books</h2>} children={
-        <form onSubmit={onSubmitFilter}>
-            <Colapsable title={<h3>Title/Author</h3>} children={
-                [
-                    <div className="item">
-                    <label key="title" htmlFor="title">Title</label>
-                    <input key="titleInput"
-                        id="title"
-                        type="text"
-                        name="title"
-                    placeholder="Search by title"
-                    value={filterByToEdit.title}
-                    onChange={handleChange} />
-                    </div>,
-                    <div className="item">
-                    <label key="author" htmlFor="author">Author</label>
-                    <input key="authorInput"
-                        id="authors"
-                        type="text"
-                        name="authors"
-                        placeholder="Search by author"
-                        value={filterByToEdit.author}
-                        onChange={handleChange} />
-                    </div>
-                ]} />
-            <Colapsable title={<h3>Categories</h3>} children={
-                <div>
-                    {
-                        bookService.getCategories().map(element => {
-                        return (
-                            <div key={element}>
-                                <input type="checkbox" 
-                                    id={element} 
-                                    name="categories" 
-                                    value={element} 
-                                    onChange={handleChange} 
-                                    checked={isChecked(element)}
-                                    />
-                                <label htmlFor={element}>{element}</label>
-                            </div>
-                        )
-                    })}
-                </div>
-            } />
-            <Colapsable title={<h3>Price</h3>} children={
-                [
-                    <div className="item">
-                        <label key="minPrice" htmlFor="minPrice">Min Price</label>
-                        <input key="minPriceInput"
-                            id="minPrice"
-                            type="number"
-                            name="minPrice"
-                            placeholder="Min price"
-                            value={filterByToEdit.minPrice}
-                            onChange={handleChange}
-                        />
-                    </div>,
-                    <div className="item">
-                        <label key="maxPrice" htmlFor="maxPrice">Max Price</label>
-                        <input key="maxPriceInput"
-                            id="maxPrice"
-                            type="number"
-                            name="maxPrice"
-                            placeholder="Max price"
-                            value={filterByToEdit.maxPrice}
-                            onChange={handleChange}
-                        />
-                    </div>,
-                    <div className="item">
-                        <label key="isOnSale" htmlFor="isOnSale">On Sale</label>
-                        <input key="isOnSaleInput"
-                            id="isOnSale"
-                            type="checkbox"
-                            name="isOnSale"
-                            checked={filterByToEdit.isOnSale}
-                            onChange={handleChange}
-                        />
-                    </div>
-                ]
-            } />
-            <Colapsable title={<h3>Page Count</h3>} children={
-                [
-                    <div className="item">
-                        <label key="minPageCount" htmlFor="minPageCount">Min Page Count</label>
-                        <input key="minPageCountInput"
-                            id="minPageCount"
-                            type="number"
-                            name="minPageCount"
-                            placeholder="Min page count"
-                            value={filterByToEdit.minPageCount}
-                            onChange={handleChange}
-                        />
-                    </div>,
-                    <div className="item">
-                        <label key="maxPageCount" htmlFor="maxPageCount">Max Page Count</label>
-                        <input key="maxPageCountInput"
-                            id="maxPageCount"
-                            type="number"
-                            name="maxPageCount"
-                            placeholder="Max page count"
-                        value={filterByToEdit.maxPageCount}
-                        onChange={handleChange}
-                        />
-                    </div>
-                ]
-            } />
-            <button>Filter</button>
-            <button onClick={(ev) => handleClear(ev)}>Clear</button>
-        </form>
-        }/>
+        <Colapsable title={<h2>Filter Books</h2>}>
+            <form>
+                <TitleAuthorFilter filter={filterByToEdit} onHandleChange={handleChange} />
+                <CategoriesFilter isChecked={isChecked} onHandleChange={handleChange}/>
+                <PriceFilter filter={filterByToEdit} onHandleChange={handleChange} />
+                <PageCountFilter filter={filterByToEdit} onHandleChange={handleChange}/>
+                <Actions 
+                    positiveCaption="Filter"
+                    positiveAction={onSubmitFilter}
+                    negativeCaption="Clear"
+                    negativeAction={handleClear}
+                    />
+            </form>
+        </Colapsable>
     </div>
+}
+
+function PriceFilter ({filter, onHandleChange}){
+    return (
+        <Colapsable title={<h3>Price</h3>}>
+            <NumInputWithLabel id='minPrice' label='Min Price' value={filter.minPrice} onHandleChange={onHandleChange}/>
+            <NumInputWithLabel id='maxPrice' label='Max Price' value={filter.maxPrice} onHandleChange={onHandleChange}/>
+            <CheckboxWithLabel id='isOnSale' BeforeLabel='On Sale' isChecked={filter.isOnSale} onHandleChange={onHandleChange} />
+        </Colapsable>
+    ) 
+}
+
+function PageCountFilter ({filter, onHandleChange}){
+    return (
+        <Colapsable title={<h3>Page Count</h3>}>
+            <NumInputWithLabel id='minPageCount' label='Min Page Count' value={filter.minPageCount} onHandleChange={onHandleChange}/>
+            <NumInputWithLabel id='maxPageCount' label='Max Page Count' value={filter.maxPageCount} onHandleChange={onHandleChange}/>
+        </Colapsable>
+    )
+}
+
+function CategoriesFilter({isChecked , onHandleChange}){
+    return (
+        <Colapsable title={<h3>Categories</h3>}>
+            {
+                bookService.getCategories().map(element => {
+                return (
+                    <CheckboxWithLabel 
+                        key={element}
+                        id={element} 
+                        field='categories' 
+                        isChecked={isChecked(element)} 
+                        AfterLabel={element} 
+                        onHandleChange={onHandleChange}
+                    />
+                )
+            })}
+        </Colapsable>
+    )
+}
+
+function TitleAuthorFilter({filter , onHandleChange}){
+    return (
+        <Colapsable title={<h3>Title/Author</h3>}> 
+            <TxtInputWithLabel label='title' value={filter.title} onHandleChange={onHandleChange}/>
+            <TxtInputWithLabel label='author' value={filter.author} onHandleChange={onHandleChange}/>
+        </Colapsable>
+    )
+}
+
+function TxtInputWithLabel({label, value , onHandleChange, id=undefined}){
+    const capitalizedLabel = utilService.capitalizeFirstLetter(label)
+    const _id = id ? id : label
+    return (
+        <div className="item">
+            <label key={_id} htmlFor={_id}>{capitalizedLabel}</label>
+            <input key={_id+"Input"}
+                id={_id}
+                type="text"
+                name={_id}
+            placeholder={`Search by ${capitalizedLabel}`}
+            value={value}
+            onChange={onHandleChange} />
+        </div>
+    )
+}
+
+function NumInputWithLabel({label, value , onHandleChange, id=undefined}){
+    const capitalizedLabel = utilService.capitalizeFirstLetter(label)
+    const _id = id ? id : label   
+    return (   
+        <div className="item">
+            <label key={_id} htmlFor={_id}>{capitalizedLabel}</label>
+            <input key={`${_id}Input`}
+                id={_id}
+                type="number"
+                name={_id}
+                placeholder={`Set ${capitalizedLabel}`}
+                value={value}
+                onChange={onHandleChange}
+            />
+        </div>
+    )
+}
+
+function CheckboxWithLabel({onHandleChange, field=undefined, isChecked=false ,id=undefined,BeforeLabel='', AfterLabel=''}){
+    const _id = id ? id : BeforeLabel+AfterLabel
+    const _field = field ? field : _id
+    return(
+        <div className="item">
+            {BeforeLabel &&<label key={_id} htmlFor={_id}>{BeforeLabel}</label>}
+            <input key={`${_id}Input`}
+                id={_id}
+                type="checkbox"
+                name={_field}
+                checked={isChecked}
+                onChange={onHandleChange}
+            />
+            {AfterLabel &&<label key={_id} htmlFor={_id}>{AfterLabel}</label>}
+        </div>
+    )   
 }

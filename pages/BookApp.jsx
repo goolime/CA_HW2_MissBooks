@@ -23,11 +23,20 @@ export function BookApp() {
         bookService.query(filterBy).then(setBooks)
     }
 
+    function onDelete(bookId){
+        bookService.remove(bookId)
+                    .then(
+                        setBooks(
+                            prevBooks=>prevBooks.filter(book=>book.id!==bookId)
+                        )
+                    )
+    }
+
     if (books === null) return <Loading />
     return (
         <section className="book-app">
             <BookFilter filterBy={filterBy} onFilterChange={ filter => setFilterBy(filter)} />
-            <BookList books={books} />
+            <BookList books={books} onDelete={onDelete}/>
         </section>
     )
 }

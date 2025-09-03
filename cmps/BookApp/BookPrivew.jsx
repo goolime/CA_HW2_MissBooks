@@ -1,6 +1,8 @@
+import { DeleteImg } from "./DeleteImg.jsx"
+
 const { Link } = ReactRouterDOM
 
-export function BookPrivew({ bookId, BookTitle, BookAuthors, BookSubtitle }){
+export function BookPrivew({ bookId, BookTitle, BookAuthors, BookSubtitle, onDelete }){
     return (
             <div className="book-preview">
                 <div className="book-entry">
@@ -14,7 +16,8 @@ export function BookPrivew({ bookId, BookTitle, BookAuthors, BookSubtitle }){
                     </div>
                 </div>
                 <div className="book-actions">
-                    <button ><Link to={`/book/${bookId}`} >Details</Link></button>
+                    <button><Link to={`/book/${bookId}`} >Details</Link></button>
+                    <button onClick={()=>onDelete(bookId)}><DeleteImg/></button>
                 </div>
             </div>
     )

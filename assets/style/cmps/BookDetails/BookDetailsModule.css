@@ -73,8 +73,7 @@
     border-radius: 8px;
 }
 
-
-.book-details .book-price p {
+.book-details .book-price h3 {
     margin: 0;
     font-size: 1.2rem;
 }

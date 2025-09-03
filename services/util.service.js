@@ -8,7 +8,8 @@ export const utilService = {
     getMonthName,
     animateCSS,
     getCurrencySign,
-    getCurrencys
+    getCurrencys,
+    capitalizeFirstLetter
 }
 
 function makeId(length = 6) {
@@ -117,4 +118,11 @@ function getCurrencys(){
             currencyCode: 'YEN' ,
             currencySign: '¥'}
     ]
+}
+
+function capitalizeFirstLetter(str) {
+  if (typeof str !== 'string' || str.length === 0) {
+    return str; // Handle non-string input or empty strings
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

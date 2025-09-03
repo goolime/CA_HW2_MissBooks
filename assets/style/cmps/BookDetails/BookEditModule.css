@@ -72,7 +72,9 @@
     color: var(--gray1);
 }
 
-.book-edit .book-info .edit-authors .action{
+.book-edit .book-info .edit-authors .actions{
+    display: flex;
+    justify-content: start;
     margin-left: 1.5rem;
 }
 
@@ -142,7 +144,7 @@
     font-size: 1rem;
 }
 
-.book-edit .edit-actions{
+.book-edit .actions{
     grid-area: edit-action;
     display: flex;
     flex-direction: row;
