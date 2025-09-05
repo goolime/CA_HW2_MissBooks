@@ -1,0 +1,35 @@
+.user-msg {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid var(--clr1bg);
+    border-radius: 8px;
+    background: var(--gray1);
+    backdrop-Filter: blur(8px);
+    z-index: 999999999;
+}
+
+.user-msg .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.user-msg  dialog .dialog-message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.user-msg-backdrop {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999998;
+}

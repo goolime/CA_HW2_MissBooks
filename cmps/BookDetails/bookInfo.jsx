@@ -22,9 +22,6 @@ export function BookInfoEdit({book, onHandleChange}){
 }
 
 export function BookInfo({book}){
-
-    
-
     return (
         <section className="book-info">
             <h2>{book.title}</h2>

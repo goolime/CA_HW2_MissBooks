@@ -6,24 +6,14 @@ import { BookImg } from "./BookImg.jsx"
 import { BookInfoEdit } from "./bookInfo.jsx"
 import { BookPriceEdit } from "./BookPrice.jsx"
 import { BookDescriptionEdit } from "./BookDescription.jsx"
+import { showMessage } from "../../services/event-bus.service.js"
 
 const {useState, useEffect} = React
 
-function DialogMessege( { message }  ){
-    return [
-        <div key='1' className="backdrop"></div>,
-        <dialog key='2' className={`${message.positive ? 'positive': ''}`} open>
-            <div className={`dialog-message`}>
-                <h2>{message.messege}</h2>
-                <button onClick={message.onClose}>Continue</button>
-            </div>
-        </dialog>
-    ]
-}
+
 
 export function BookEditModule({ book, onChangeEditMode, onBookChanged }) {
     const [bookToEdit,setbookToEdit] =useState({...book})
-    const [message, setMessage] = useState(undefined)
     
     
     useEffect(()=>{
@@ -37,19 +27,33 @@ export function BookEditModule({ book, onChangeEditMode, onBookChanged }) {
     function onSaveChanges(){
         bookService.save(bookToEdit).then(updatedBook =>{
             onBookChanged(updatedBook)
-            setMessage({messege:"Book Was Saved Successfuly!", positive:true, onClose:()=>{
-                setMessage(undefined)
-                onChangeEditMode()
-            }})
+            showMessage({
+                txt: "Book Was Saved Successfuly!",
+                type: 'positive',
+                buttons:[
+                    {
+                        txt:'Continue',
+                        onClick:()=>onChangeEditMode()
+                    }
+                ]
+            })
         }).catch(err=>{
             console.log(err)
-            setMessage({messege:"Something went wrong, Please try agian", positive:false, onClose:()=>setMessage(undefined) })
+            showMessage({
+                txt:'Something went wrong, Please try agian', 
+                type: 'negative',
+                buttons:[
+                    {
+                        txt:'Continue',
+                        onClick:()=>{}
+                    }
+                ]
+            })                     
         })
     }
 
     return (
         <section className="book-edit">
-            {message && <DialogMessege message={message} />}
             <BookImg img={bookToEdit.thumbnail} alt={bookToEdit.title} />
             <BookInfoEdit book={bookToEdit} onHandleChange={handleChange} />
             <BookPriceEdit listPrice={bookToEdit.listPrice} onHandleChange={handleChange} />

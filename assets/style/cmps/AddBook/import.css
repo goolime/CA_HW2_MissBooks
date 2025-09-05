@@ -1,0 +1,114 @@
+.import-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.import-staging {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.import-staging .staged-books{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.4rem;
+}
+
+.import-header .results{
+    width:100%;
+    max-height: 200px;
+    list-style: none;
+    overflow-y: scroll;
+}
+
+.import-staging .staged-books .staged,
+.import-header .results .result{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: var(--clr1bg-light);
+    border-radius: 8px;
+    list-style-type: none;
+    min-height: 50px;
+}
+
+.import-staging .staged-books .staged{
+    background-color: var(--clr2bg-light);
+    padding: 1rem;
+}
+
+.import-staging .staged-books .staged .info,
+.import-header .results .result .info{
+    display: flex;
+    flex-direction: column;
+
+}
+.import-staging .staged-books .staged .info h5,
+.import-staging .staged-books .staged .info h4,
+.import-staging .staged-books .staged .info h3,
+.import-header .results .result .info h5,
+.import-header .results .result .info h4,
+.import-header .results .result .info h3{
+    margin: 0;
+}
+
+.import-staging .staged-books .staged .info h4,
+.import-header .results .result .info h4{
+    font-size: 1rem;
+    color: var(--gray2);
+    
+}
+
+.import-staging .staged-books .staged .info .title,
+.import-header .results .result .info .title{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 8px
+}
+
+.import-staging .staged-books .staged img,
+.import-header .results .result img{
+    width:30px;
+    height: 30px;
+    margin-right: 10px;
+    filter: invert(64%) sepia(0%) saturate(0%) hue-rotate(147deg) brightness(98%) contrast(87%);
+    transition: 0.5s;
+}
+
+.import-staging .staged-books .staged img:hover,
+.import-header .results .result img:hover{
+    filter: invert(14%) sepia(0%) saturate(1325%) hue-rotate(204deg) brightness(97%) contrast(91%);
+    width: 35px;
+    height: 35px;
+}
+
+.no-import{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.no-import img{
+    width: 250px;
+}
+
+.no-import h3{
+    margin: 0;
+}
+
+.no-import h1{
+    margin-bottom: 0.3rem;
+}
+
+

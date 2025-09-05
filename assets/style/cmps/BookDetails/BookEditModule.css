@@ -184,34 +184,3 @@
     justify-content: space-evenly;
 }
 
-.book-edit dialog {
-    border: 8px solid red;
-    border-radius: 8px;
-    background: var(--gray1);
-    backdrop-Filter: blur(8px);
-    z-index: 999999999;
-}
-
-
-
-.book-edit dialog.positive{
-    border: 8px solid var(--clr1bg);
-}
-
-.book-edit dialog .dialog-message{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-
-.book-edit .backdrop {
-  background: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999999998;
-
-}

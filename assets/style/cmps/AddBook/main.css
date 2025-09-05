@@ -1,0 +1,8 @@
+@import url(./header.css);
+@import url(./import.css);
+
+.add-body{
+    background-color: var(--clr1bg);
+    padding: 0.8rem;
+    border-radius: 8px;
+}

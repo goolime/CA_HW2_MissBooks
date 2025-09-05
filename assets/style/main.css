@@ -7,10 +7,12 @@
 @import url(./cmps/BookApp/bookApp.css);
 @import url(./cmps/BookDetails/bookDetails.css);
 @import url(./LongTxt.css);
+@import url(./cmps/AddBook/main.css);
+@import url(./usr-msg.css);
 
 /* Vars */
 :root {
-	--clr1: rgb(96, 107, 91);
+	--clr1: #606b5b;
 	--clr2: rgb(120, 99, 110);
 
 	--clr1bg: rgb(153, 166, 149);
@@ -19,7 +21,7 @@
 	--clr2bg-light: rgb(253, 236, 246);
 
 	--gray1: rgb(240, 240, 240);
-	--gray2: rgb(155, 155, 155);
+	--gray2: #9b9b9b;
 	--gray3: rgb(44, 44, 44);
 }
 

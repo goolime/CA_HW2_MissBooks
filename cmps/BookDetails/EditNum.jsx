@@ -26,18 +26,18 @@ export function EditH4Number( { initVal, onHandleChange, field, prefix }){
 
 
 function EditHNumber( { initVal, onHandleChange, field, prefix, size }){
-    const [value,setValue]= useState(initVal)
+    const [num,setValue]= useState(initVal)
     const [state,setState] = useState(false)
 
     function handleChange({target}){
         const {value} =target
-        setValue(value)
+        setValue(parseInt(value))
     }
 
     function onSubmit(ev){
         ev.preventDefault()
         setState(false)
-        onHandleChange(field,value)
+        onHandleChange(field,num)
     }
 
     function onCancle(ev){
@@ -47,7 +47,7 @@ function EditHNumber( { initVal, onHandleChange, field, prefix, size }){
 
     return state ? 
         <NumberEditor
-            value={value}
+            value={num}
             onHandleChange={handleChange}
             onHandleSubmit={onSubmit}
             onHandleCancle={onCancle}
@@ -56,7 +56,7 @@ function EditHNumber( { initVal, onHandleChange, field, prefix, size }){
         <NumberToEdit 
             size={size}
             prefix={prefix}
-            value={value}
+            value={num}
             onClick={()=>setState(true)}
         />
 

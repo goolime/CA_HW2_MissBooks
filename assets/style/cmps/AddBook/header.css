@@ -1,0 +1,32 @@
+.book-add-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.book-add-header .links {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+.book-add-header .links img{
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    filter: invert(95%) sepia(18%) saturate(211%) hue-rotate(46deg) brightness(90%) contrast(91%);
+    transition: 0.5s;
+}
+
+.book-add-header .links img:hover {
+    filter: invert(14%) sepia(0%) saturate(1325%) hue-rotate(204deg) brightness(97%) contrast(91%);
+    width: 35px;
+    height: 35px;
+    
+}
+
+.book-add-header .links .active img {
+    filter: invert(14%) sepia(0%) saturate(1325%) hue-rotate(204deg) brightness(97%) contrast(91%);
+}

@@ -3,7 +3,17 @@
     background-color: var(--clr2bg);
     margin : 0.5rem 0;
     border-radius: 8px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 70px;
+    grid-template-areas: "filter links"
+    
  }
+
+ .book-filter .colapsable{
+    grid-area:filter;
+ }
+
  .book-filter form .colapsable {
     border-radius: 8px;
     background-color: var(--clr2bg-light);
@@ -39,4 +49,28 @@
     align-items: start;
     gap: 0.4rem;
     font-size: 0.9rem;
+}
+
+.book-filter .links {
+    grid-area: links;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    width:70px
+}
+
+.book-filter .links img{
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    filter: invert(64%) sepia(0%) saturate(0%) hue-rotate(147deg) brightness(98%) contrast(87%);
+    transition: 0.5s;
+}
+
+.book-filter .links img:hover {
+    filter: invert(14%) sepia(0%) saturate(1325%) hue-rotate(204deg) brightness(97%) contrast(91%);
+    width: 35px;
+    height: 35px;
+    
 }
