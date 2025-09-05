@@ -11,6 +11,8 @@ export function LongTxt({txt, length=100, closePostfix="Read More", openPostfix=
     const txtToPrint = isOpen? txt : txt.substring(0,length)+'...'
     const caption = isOpen? openPostfix : closePostfix
 
+    if (txt.length<length) return <p>|{txt}</p>
+
     return (
         <div>
             <p>{txtToPrint}</p>

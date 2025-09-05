@@ -1,0 +1,69 @@
+.book-reviews{
+    background-color: var(--clr2bg);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.book-reviews .content .colapsable{
+    background-color: var(--gray2);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.book-reviews .content{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.book-reviews .content .review{
+    background-color: var(--clr2bg-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.book-reviews form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-reviews form .input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.book-reviews form .input .field{
+    display: flex;
+    flex-direction: row;
+    gap:0.4rem;
+}
+
+.book-reviews .content .review{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.book-reviews .content .review .rating img{
+    width: 40px;
+}
+
+.book-reviews .content .review .rating img.black{
+    filter: invert(64%) sepia(0%) saturate(0%) hue-rotate(147deg) brightness(98%) contrast(87%);
+}
+
+.book-reviews .content .review img.del{
+    width: 40px;
+    height: 40px;
+    filter: invert(64%) sepia(0%) saturate(0%) hue-rotate(147deg) brightness(98%) contrast(87%);
+    transition: 0.5s;
+}
+
+.book-reviews .content .review img.del:hover{
+    filter: invert(12%) sepia(0%) saturate(0%) hue-rotate(268deg) brightness(97%) contrast(86%);
+}

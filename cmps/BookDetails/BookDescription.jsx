@@ -1,5 +1,6 @@
 import { EditParagrph } from "./EditText.jsx"
 import { EditCategories } from "./EditCategories.jsx"
+import { LongTxt } from "../LongTxt.jsx"
 
 export function BookDescription({book}){
     return (
@@ -22,7 +23,7 @@ export function BookDescriptionEdit ({book, onHandleChange}){
 function Description({description}){
     return [
         <h3 key="head">Description:</h3>,
-        <p key="body">{description}</p>
+        <LongTxt key="body" txt={description}/>
     ]
 }
 

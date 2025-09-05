@@ -4,6 +4,7 @@ import { BookDetailsControls } from "../cmps/BookDetails/BookDetailsControls.jsx
 import { Loading } from "../cmps/Loading.jsx"
 import { bookService } from "../services/books.service.js"
 import { BookDetailsFooter } from "../cmps/BookDetails/BookDetailsFooter.jsx"
+import { BookReviews } from "../cmps/BookDetails/BookReviews.jsx"
 import { InDevelopment } from "./InDevelopmet.jsx"   
 
 
@@ -45,6 +46,7 @@ export function BookDetails() {
             { editMode ? <BookEditModule book={book} onChangeEditMode={handleEditModeChange} onBookChanged={handleBookChenged}/> :  <BookDetailsModule book={book} /> }
             </section>
             <BookDetailsFooter booknext={book.next} bookprev={book.prev} />
+            <BookReviews bookID={book.id} />
         </section>
     )
 }

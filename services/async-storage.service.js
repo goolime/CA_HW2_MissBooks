@@ -19,6 +19,7 @@ function get(entityType, entityId) {
     })
 }
 
+
 function post(entityType, newEntity) {
     newEntity = {...newEntity}
     newEntity.id = _makeId()
@@ -50,6 +51,8 @@ function remove(entityType, entityId) {
     })
 }
 
+
+
 // Private functions
 
 function _save(entityType, entities) {
@@ -64,3 +67,5 @@ function _makeId(length = 5) {
     }
     return text
 }
+
+

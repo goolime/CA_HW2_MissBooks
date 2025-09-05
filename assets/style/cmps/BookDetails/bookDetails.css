@@ -2,6 +2,7 @@
 @import url(./BookEditModule.css);
 @import url(./BookDetailsControls.css);
 @import url(./BookDetailsFooter.css);
+@import url(./Reviews.css);
 
 .book-details-page {
     margin: 1rem;

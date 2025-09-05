@@ -2,6 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const BOOK_KEY = 'bookDB'
+const REVIEW_KEY = 'reviewDB'
 _defaultBooks()
 
 export const bookService = {
@@ -16,7 +17,14 @@ export const bookService = {
     google: {
         get:googleGet,
         save:googleSave
+    },
+    reviews:{
+      get: getReview,
+      remove: removeReview,
+      save: saveReview,
+      getEmptyReview
     }
+
 }
 
 // For Debug (easy access from console):
@@ -176,4 +184,26 @@ function googleGet(bookTitle){
     xhr.open('GET', `https://www.googleapis.com/books/v1/volumes?printType=books&q=${bookTitle}` ,true)
     xhr.send()
   })
+}
+
+function saveReview(bookid,review){
+  if (review.id) {
+      return storageService.put(REVIEW_KEY+bookid, review)
+  } else {
+      return storageService.post(REVIEW_KEY+bookid, review)
+  }
+}
+
+function getReview(bookId){
+  return storageService.query(REVIEW_KEY+bookId)
+}
+
+function getEmptyReview(){
+  let currentDate = new Date();
+  const maxdate= `${currentDate.getFullYear()}-${(''+(currentDate.getMonth()+1)).padStart(2,'0')}`
+  return {name:'',raiting:0,readAt:maxdate}
+}
+
+function removeReview(bookId,reviewId) {
+    return storageService.remove(REVIEW_KEY+bookId,reviewId)
 }
