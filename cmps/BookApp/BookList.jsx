@@ -2,7 +2,7 @@ import { BookPrivew } from "./BookPrivew.jsx"
 import { NoResults } from "./NoResults.jsx"
 
 export function BookList({ books , onDelete}) {
-    if (books.length === 0) return <NoResults />
+    if (!books || books.length === 0) return <NoResults />
     return (
         <ul className="book-list">
             {books.map(book => (

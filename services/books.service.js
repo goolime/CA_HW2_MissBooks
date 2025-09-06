@@ -12,6 +12,7 @@ export const bookService = {
     save,
     getEmptyBook,
     getDefaultFilter,
+    getDefaultFilterFromSearchParams,
     getCategories,
     getLanguages,
     google: {
@@ -34,8 +35,9 @@ function query(filterBy = {}) {
     return storageService.query(BOOK_KEY)
         .then(books => {
             return books.filter(book => {
-                if(filterBy.title && !book.title.toLowerCase().includes(filterBy.title.toLowerCase()) && !book.subtitle.toLowerCase().includes(filterBy.title.toLowerCase())) return false
-                if(filterBy.authors && !book.authors.some(author => author.toLowerCase().includes(filterBy.authors.toLowerCase()))) return false
+                if(filterBy.title && book.title && !book.title.toLowerCase().includes(filterBy.title.toLowerCase())) return false 
+                if(filterBy.title && book.subtitle && !book.subtitle.toLowerCase().includes(filterBy.title.toLowerCase())) return false
+                if(filterBy.authors && book.authors && !book.authors.some(author => author.toLowerCase().includes(filterBy.authors.toLowerCase()))) return false
                 if(filterBy.publishedDate && book.publishedDate !== filterBy.publishedDate) return false
                 if(filterBy.minPageCount && book.pageCount < filterBy.minPageCount) return false
                 if(filterBy.maxPageCount && book.pageCount > filterBy.maxPageCount) return false
@@ -90,6 +92,16 @@ function getDefaultFilter(filterBy = { title: '', authors: '', publishedDate: 0,
         filterBy.maxPrice = Math.max(...books.map(book => book.listPrice.amount))
     }
     return { title: filterBy.title, authors: filterBy.authors, publishedDate: filterBy.publishedDate, minPageCount: filterBy.minPageCount, maxPageCount: filterBy.maxPageCount, language: filterBy.language, isOnSale: filterBy.isOnSale, minPrice: filterBy.minPrice, maxPrice: filterBy.maxPrice }
+}
+
+function getDefaultFilterFromSearchParams(searchParams){
+    const defualtFilter = getDefaultFilter()
+    const filterBy={}
+    for (const field in defualtFilter){
+        filterBy[field] = searchParams.get(field) || defualtFilter[field]
+    }
+
+    return filterBy
 }
 
 function _defaultBooks() {

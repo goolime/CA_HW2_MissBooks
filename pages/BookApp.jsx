@@ -5,16 +5,20 @@ import { BookList } from '../cmps/BookApp/BookList.jsx'
 
 
 const { useState, useEffect } = React
+const { useSearchParams } = ReactRouterDOM
 
 export function BookApp() {
+    const [searchParams,setSearchParams] = useSearchParams()
     const [books, setBooks] = useState(null)
-    const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
+    const defualtFilter = bookService.getDefaultFilterFromSearchParams(searchParams)
+    const [filterBy, setFilterBy] = useState(defualtFilter)
 
     useEffect(()=>{
         loadBooks()
     },[])
 
     useEffect(() => {
+        setSearchParams(filterBy)
         setBooks(null)
         loadBooks()
     }, [filterBy])

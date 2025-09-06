@@ -4,7 +4,7 @@ import { Actions } from "../actions.jsx"
 import { Colapsable } from "../Colapsable.jsx"
 
 const { useState } = React
-const { NavLink } = ReactRouterDOM
+const { Link  } = ReactRouterDOM
 
 export function BookFilter({ filterBy, onFilterChange }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
@@ -70,8 +70,8 @@ export function BookFilter({ filterBy, onFilterChange }) {
             </form>
         </Colapsable>
         <div className="links">
-            <NavLink to='/book/add/manual'><img src={'./assets/img/add.png' } /></NavLink>
-            <NavLink to='/book/add/import'><img src={'./assets/img/import.png'}/></NavLink>
+            <Link to='/book/add/manual'><img src={'./assets/img/add.png' } /></Link>
+            <Link to='/book/add/import'><img src={'./assets/img/import.png'}/></Link>
         </div>
     </div>
 }
