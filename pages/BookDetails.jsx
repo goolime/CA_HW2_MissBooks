@@ -46,7 +46,7 @@ export function BookDetails() {
             { editMode ? <BookEditModule book={book} onChangeEditMode={handleEditModeChange} onBookChanged={handleBookChenged}/> :  <BookDetailsModule book={book} /> }
             </section>
             <BookDetailsFooter booknext={book.next} bookprev={book.prev} />
-            <BookReviews bookID={book.id} />
+            <BookReviews bookId={book.id} />
         </section>
     )
 }
